@@ -1,4 +1,11 @@
 =========================================
+Username            : hilmi@gmail.com
+Pass                : 123
+
+=========================================
+Database dengan file bernama DB_Pretest_Hilmi.sql
+
+=========================================
 Nama        : Muhammad Hilmi Zain
 No WA       : 081223497923
 NIM         : 152011513044
