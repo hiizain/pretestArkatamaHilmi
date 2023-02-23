@@ -106,6 +106,7 @@ class KategoriController extends Controller
                 $i++;
             }
         }
+        // $arrNamaKategori['kategori'] = $arrNamaKategori;
         return json_encode($arrNamaKategori);
     }
 }

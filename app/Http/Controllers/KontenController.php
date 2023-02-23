@@ -33,18 +33,6 @@ class KontenController extends Controller
 
     public function createKonten_action(Request $request)
     {
-        // $request->validate([
-        //     'judul' => 'required',
-        // ],[
-        //     'judul.required' => 'Kolom judul harus diisi!',
-        // ]);
-        // var_dump($request->judul);
-        // die();
-
-        // var_dump($request->hasFile('upload'));
-        // var_dump($request->isiKonten);
-        // die();
-        
         $blog = Blog::where('id_blog', $request->idBlog)->first();
 
         if($blog->ID_KONTEN === null){

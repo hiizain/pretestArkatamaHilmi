@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class BlogController extends Controller
 {
     public function index(){
-        $data['title'] = 'Kategori';
+        $data['title'] = 'Dashboard';
 
         // var_dump(Auth::user()->email);
         // die();
@@ -50,7 +50,7 @@ class BlogController extends Controller
         $blog = new Blog([
             'judul' => $request->judul,
             'id_user' => $request->idUser,
-            'id_kategori' => '2',
+            'id_kategori' => $request->kategori,
             'status_publish' => '0',
             'slug' => Str::slug($request->judul),
         ]);

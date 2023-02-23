@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>BlogMI {{ $data['title'] }}</title>
 
     <!-- Custom fonts for this template -->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -131,7 +131,7 @@
             </li> --}}
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/kategori">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Kategori</span></a>
@@ -245,7 +245,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Pilih tombol "Logout" untuk keluar dari platform dan mengakhiri sesi.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="/logout">Logout</a>
@@ -270,6 +270,32 @@
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
+
+    <script>
+        var selector = '.navbar-nav li';
+        $(selector).on('click', function(){
+            $(selector).removeClass('active');
+            $(this).addClass('active');
+        });
+        // function active(name){
+        //     var targetMenu = document.getElementsByClassName(name);
+        //     if(targetMenu.classList.contains('nav-item')) {
+            
+        //         // 5. maka ambil menu link yang aktif
+        //         const menuLinkActive = document.querySelector("ul li.active");
+        
+        //         // 6. lalu cek, Jika menu link active ada dan menu yang di klik user adalah menu yang tidak sama dengan menu yang aktif, (cara cek-nya yaitu dengan membandingkan value attribute href-nya)
+        //         if(menuLinkActive !== null && targetMenu.getAttribute('href') !== menuLinkActive.getAttribute('href')) {
+        
+        //             // 7. maka hapus class active pada menu yang sedang aktif
+        //             menuLinkActive.classList.remove('active');
+        //         }
+        
+        //         // 8. terakhir tambahkan class active pada menu yang di klik oleh user
+        //         targetMenu.classList.add('active');
+        //     }
+        // }
+    </script>
 
 </body>
 

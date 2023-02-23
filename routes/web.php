@@ -18,30 +18,21 @@ use App\Http\Controllers\PageController;
 |
 */
 
-Route::get('/login', function () {
-    return view('login');
-});
-
-// Route::get('/blog', function () {
-//     return view('application/welcome');
-// });
 
 // App
 // // Page
 Route::get('/', [PageController::class, 'index'])->name('page');
 Route::get('/artikel/{slug}', [PageController::class, 'artikel'])->name('artikel');
+Route::get('getArtikel', [PageController::class, 'getArtikel'])->name('getArtikel');
 
 // // Blog
 Route::get('blog', [BlogController::class, 'index'])->name('blog')->middleware('auth');
-// Route::get('blog', [BlogController::class, 'index'])->name('blog');
 Route::post('createBlog', [BlogController::class, 'createBlog_action'])->name('createBlog.action');
 Route::get('editBlog/{idBlog}', [BlogController::class, 'editBlog'])->name('editBlog');
 Route::get('publishBlog/{idBlog}', [BlogController::class, 'publishBlog'])->name('publishBlog');
 Route::get('takeDownBlog/{idBlog}', [BlogController::class, 'takeDownBlog'])->name('takeDownBlog');
-// Route::post('editBlog', [BlogController::class, 'editBlog_action'])->name('editBlog.action');
 
 // // Konten
-// Route::get('konten', [KontenController::class, 'index'])->name('blog');
 Route::post('editKonten', [KontenController::class, 'editKonten'])->name('editKonten');
 Route::post('editKonten', [KontenController::class, 'editKonten_action'])->name('editKonten.action');
 Route::post('createKonten', [KontenController::class, 'createKonten_action'])->name('createKonten.action');
@@ -56,23 +47,20 @@ Route::post('editKategoriAction', [KategoriController::class, 'editKategori_acti
 Route::post('deleteKategori', [KategoriController::class, 'deleteKategori_action'])->name('deleteKategori.action');
 
 Route::get('getKategori', [KategoriController::class, 'getKategori'])->name('getKategori');
-// Route::get('deleteKategori/{idKategori}', [KategoriController::class, 'deleteKategori_action'])->name('deleteKategori.action');
+
+
+// =====================================================================================
 
 // Register
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'register_action'])->name('register.action');
 
+// Route::get('/login', function () {
+//     return view('login');
+// });
 // Login
 Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('login', [UserController::class, 'authenticate'])->name('login.action');
 
 // Logout
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
-
-// // Admin
-// Route::get('/blog', [Admin::class, 'index']);
-
-// Route::get('/blog-mahasiswa', [Admin::class, 'mahasiswa']);
-// Route::post('/blog-mahasiswa-setDosen', [Admin::class, 'setDosen']);
-// Route::get('/blog-mahasiswa-tambah', [Admin::class, 'tambahMhs']);
-// Route::post('/blog-mahasiswa-create', [Admin::class, 'createMhs']);

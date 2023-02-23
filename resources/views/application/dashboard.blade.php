@@ -28,23 +28,12 @@
                         <label for="recipient-name" class="col-form-label">Judul :</label>
                         <input type="text" class="form-control" name="judul" id="recipient-name">
                     </div>
-                    {{-- <div class="form-group">
+                    <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Kategori :</label>
-                        <select name="kategori" id="listKategori">
-                            
+                        <select class="form-control" name="kategori" id="listKategori">
+                            <option value="" hidden>Pilih Kategori</option>
                         </select>
                         <script>
-                            // var cek = document.getElementById('listKategori').on('click', function () {
-                            //     var Status = $(this).val();
-                            //     $.ajax({
-                            //         url: 'Ajax/StatusUpdate.php',
-                            //         data: {
-                            //             text: $("textarea[name=Status]").val(),
-                            //             Status: Status
-                            //         },
-                            //         dataType : 'json'
-                            //     });
-                            // });
                             var cek = document.getElementById('listKategori')
                             cek.onclick = function(){
                                 console.log('cek')
@@ -54,20 +43,13 @@
                                     dataType: 'json', // added data type
                                     success: function(res) {
                                         tampilanKategori = ``;
-                                        console.log(res)
-                                        if (res['kategori'] !== null) {
-                                            console.log(res['kategori'])
+                                        console.log(res.length)
+                                        if (res.length !== 0) {
                                             $.each(res, function(key, item) {
+                                                console.log(item)
                                                 tampilanKategori +=
-                                                    `
-                                                <li class="row mx-1 my-2">
-                                                    <div class="col-1 text-center d-flex align-items-center mx-2">
-                                                        <input type="checkbox" id="kategori`+ item['ID_KATEGORI'] +`" name="kategori" value="`+ item['ID_KATEGORI'] +`">
-                                                    </div>
-                                                    <h6 class="col-9 p-0 m-0 d-flex align-items-center">
-                                                        <label for="kategori` + item['ID_KATEGORI'] + `"> ` + item['KATEGORI'] + `</label>
-                                                    </h6>
-                                                </li>
+                                                `
+                                                    <option value="`+ item['ID_KATEGORI'] +`">` + item['KATEGORI'] + `</option>
                                                 `;
                                             });
                                         } else {
@@ -80,13 +62,14 @@
                                             </li>
                                             `;
                                         }
-
+                                        console.log(tampilanKategori);
                                         $('#listKategori').html(tampilanKategori);
+                                        $('#listKategories').html('halo');
                                     }
                                 });
                             }
                         </script>
-                    </div> --}}
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -98,29 +81,37 @@
         </div>
     </div>
     <div class="row justify-content-md-center">
-        <div class="col d-flex flex-row mt-3 p-0">
+        <div class="col mt-3 p-0">
+            <div class="row">
             {{-- <ul class="m-0 p-0"> --}}
                 @if($blogs)
                     @foreach($blogs as $item)
-                        <div class="m-2 card" style="width: 18rem;">
+                        <div class="col-3 p-2">
+                        <div class="mx-1 my-2 card">
                             {{-- <i class="bi bi-aspect-ratio-fill card-img-top"></i> --}}
                             <img class="card-img-top" src="..\assets\img\1156px-Picture_icon_BLACK.svg.png" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $item->JUDUL }}</h5>
+                                <h5 class="card-title"><?php if(Str::length($item->JUDUL)>=30){ echo substr($item->JUDUL,0,30).'...'; } else echo $item->JUDUL;?></h5>
                                 <p class="card-text">{{ $item->kategori->KATEGORI }}</p>
                                 <p class="card-text">
                                     <?php
                                         if($item->ID_KONTEN !== null){
                                             echo substr(strip_tags($item->konten->ISI),0,50).' ...';
-                                        } else echo '...'
+                                        } else{
+                                        ?>
+                                            <p class="card-text font-italic">Belum ada konten</p>
+                                        <?php
+                                        }
                                     ?>
                                 </p>
                                 <a href="/editBlog/{{ $item->ID_BLOG }}" class="btn btn-primary">Edit</a>
                             </div>
                         </div>
+                        </div>
                     @endforeach
                 @endif
             {{-- </ul> --}}
+            </div>
         </div>
         
     </div>

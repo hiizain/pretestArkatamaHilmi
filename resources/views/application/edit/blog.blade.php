@@ -13,7 +13,7 @@
                             <div class="col-2">URL</div>
                             <div class="col-1">:</div>
                             <div class="col">
-                                <a href="{{ $base_url.'/'.$blog->SLUG }}" class="m-0 p-0">{{ $base_url.'/'.$blog->SLUG }}</a>
+                                <a href="{{ $base_url.'/'.$blog->SLUG }}" class="m-0 p-0" target="_blank">{{ $base_url.'/'.$blog->SLUG }}</a>
                             </div>
                         </div>
                         <div class="row">
@@ -23,8 +23,8 @@
                         </div>
                     </div>
                     <div class="col-3 text-right">
-                        <a href="/publishBlog/{{ $blog->ID_BLOG }}" id="publish" class="btn @if($blog->STATUS_PUBLISH === '1') btn-secondary @else btn-success @endif tombol mx-1">Publish</a>
-                        <a href="/takeDownBlog/{{ $blog->ID_BLOG }}" id="takeDown" class="btn  @if($blog->STATUS_PUBLISH === '0') btn-secondary @else btn-danger @endif tombol mx-1">Take Down</a>
+                        <a @if($blog->STATUS_PUBLISH ==! '1') href="/publishBlog/{{ $blog->ID_BLOG }}" @endif id="publish" class="btn @if($blog->STATUS_PUBLISH ==! '1') btn-success @else btn-secondary @endif tombol mx-1">Publish</a>
+                        <a @if($blog->STATUS_PUBLISH ==! '0') href="/takeDownBlog/{{ $blog->ID_BLOG }}" @endif id="takeDown" class="btn  @if($blog->STATUS_PUBLISH ==! '0') btn-danger @else btn-secondary @endif tombol mx-1">Take Down</a>
                         {{-- <button id="publish" class="btn @if($blog->STATUS_PUBLISH === '1') btn-secondary @else btn-success @endif tombol mx-1">Publish</button>
                         <button id="takeDown" class="btn  @if($blog->STATUS_PUBLISH === '0') btn-secondary @else btn-danger @endif tombol mx-1">Take Down</button> --}}
                     </div>
